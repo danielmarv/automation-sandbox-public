@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hiero-hackers/sdk-automations/main/docs/automations.schema.json
+schemaVersion: 2
+# active: a public sandbox for protocol 6.16's non-collaborator claim.
+mode: active
+
+capabilities:
+  triageQueue:
+    enabled: true
+    welcome: true
+  assignment:
+    enabled: true
+    autoAssign:
+      enabled: true
+      claimableOnlyWhen: [ready]
+      notClaimableWhen: [blocked, awaitingTriage]
+      capIgnores: [blocked]
+      maxOpen: 2
+    unassign:
+      enabled: true
+
+mappings:
+  labels:
+    awaitingTriage: "status: triage"
+    ready: "status: ready for dev"
+    inProgress: "status: in progress"
+    blocked: "status: blocked"
+  commands:
+    assign: "/assign"
+    unassign: "/unassign"
